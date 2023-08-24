@@ -1,13 +1,14 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Nwilging\LaravelStrictValidation\Providers;
+namespace TrueIfNotFalse\LumenStrictValidation\Providers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
-use Nwilging\LaravelStrictValidation\StrictTypesValidator;
+use TrueIfNotFalse\LumenStrictValidation\StrictTypesValidator;
 
-class LaravelStrictValidationProvider extends ServiceProvider
+class StrictValidationProvider extends ServiceProvider
 {
     public function boot(): void
     {
@@ -18,7 +19,8 @@ class LaravelStrictValidationProvider extends ServiceProvider
 
             /** @var StrictTypesValidator $validator */
             $customValidator = $this->app->make(StrictTypesValidator::class);
+
             return $customValidator->validate($attribute, $value, $parameters);
-        }, 'The :attribute must be of type :type');
+        }, trans(':attribute must be of type :type'));
     }
 }

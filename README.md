@@ -1,18 +1,12 @@
 # Strict Types Form Request Validation
 
-![Tests](https://github.com/nwilging/laravel-strict-types-validation/actions/workflows/main-branch.yml/badge.svg?branch=main)
-![Coverage](./.github/coverage-badge.svg)
-[![Latest Stable Version](http://poser.pugx.org/nwilging/laravel-strict-types-validation/v)](https://packagist.org/packages/nwilging/laravel-strict-types-validation)
-[![License](http://poser.pugx.org/nwilging/laravel-strict-types-validation/license)](https://packagist.org/packages/nwilging/laravel-strict-types-validation)
-[![Total Downloads](http://poser.pugx.org/nwilging/laravel-strict-types-validation/downloads)](https://packagist.org/packages/nwilging/laravel-strict-types-validation)
-
 Ensures incoming form request data is of a certain datatype.
 
 ---
 
 ### About
 
-While Laravel includes many useful validation rules out of the box, [it lacks the ability to validate _data type_ as well
+While Lumen includes many useful validation rules out of the box, [it lacks the ability to validate _data type_ as well
 as _content type_](https://laravel.com/docs/9.x/validation#rule-integer). There have been a [couple](https://github.com/laravel/framework/issues/18918)
 [complaints](https://github.com/laravel/ideas/issues/1719) about this over the years, but due to the versatile nature of
 Laravel, it doesn't seem likely that validation rules such as `integer` or `boolean` will begin validating that the data
@@ -25,16 +19,20 @@ This package provides a way for you to require the incoming data to be of a give
 # Installation
 
 ### Pre Requisites
-1. Laravel v8+
+1. Lumen v8+
 2. PHP 7.4+
 
 ### Install with Composer
 
-```
-composer require nwilging/laravel-strict-types-validation
+```bash
+composer require trueifnotfalse/lumen-strict-types-validation
 ```
 
----
+Add to `bootstrap/app.php` and register the Service Provider.
+
+```php
+    $app->register(TrueIfNotFalse\LumenStrictValidation\Providers\StrictValidationProvider::class);
+```
 
 # Usage
 

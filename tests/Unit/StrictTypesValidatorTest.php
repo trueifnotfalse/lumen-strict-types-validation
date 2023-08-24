@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Nwilging\LaravelStrictValidationTests\Unit;
+namespace TrueIfNotFalse\LaravelStrictValidationTests\Unit;
 
-use Nwilging\LaravelStrictValidation\StrictTypesValidator;
-use Nwilging\LaravelStrictValidationTests\TestCase;
+use TrueIfNotFalse\LaravelStrictValidationTests\TestCase;
+use TrueIfNotFalse\LumenStrictValidation\StrictTypesValidator;
 
 class StrictTypesValidatorTest extends TestCase
 {
@@ -14,7 +15,7 @@ class StrictTypesValidatorTest extends TestCase
     public function testValidate($attribute, $value, array $parameters, bool $expectedResult)
     {
         $validator = new StrictTypesValidator();
-        $result = $validator->validate($attribute, $value, $parameters);
+        $result    = $validator->validate($attribute, $value, $parameters);
 
         $this->assertSame($expectedResult, $result);
     }
@@ -22,113 +23,113 @@ class StrictTypesValidatorTest extends TestCase
     public function validatorDataProvider(): array
     {
         return [
-            'validation passes - string' => [
-                'attribute' => 'test',
-                'value' => 'value',
+            'validation passes - string'                        => [
+                'attribute'  => 'test',
+                'value'      => 'value',
                 'parameters' => [
-                    'string'
+                    'string',
                 ],
                 true,
             ],
-            'validation passes - integer as int type' => [
-                'attribute' => 'test',
-                'value' => 42,
+            'validation passes - integer as int type'           => [
+                'attribute'  => 'test',
+                'value'      => 42,
                 'parameters' => [
-                    'int'
+                    'int',
                 ],
                 true,
             ],
             'validation passes - integer as native type string' => [
-                'attribute' => 'test',
-                'value' => 42,
+                'attribute'  => 'test',
+                'value'      => 42,
                 'parameters' => [
-                    'integer'
+                    'integer',
                 ],
                 true,
             ],
-            'validation passes - double as float type' => [
-                'attribute' => 'test',
-                'value' => 1.56,
+            'validation passes - double as float type'          => [
+                'attribute'  => 'test',
+                'value'      => 1.56,
                 'parameters' => [
-                    'float'
+                    'float',
                 ],
                 true,
             ],
-            'validation passes - double as native type string' => [
-                'attribute' => 'test',
-                'value' => 1.56,
+            'validation passes - double as native type string'  => [
+                'attribute'  => 'test',
+                'value'      => 1.56,
                 'parameters' => [
-                    'double'
+                    'double',
                 ],
                 true,
             ],
-            'validation passes - boolean as bool type' => [
-                'attribute' => 'test',
-                'value' => false,
+            'validation passes - boolean as bool type'          => [
+                'attribute'  => 'test',
+                'value'      => false,
                 'parameters' => [
-                    'bool'
+                    'bool',
                 ],
                 true,
             ],
             'validation passes - boolean as native type string' => [
-                'attribute' => 'test',
-                'value' => true,
+                'attribute'  => 'test',
+                'value'      => true,
                 'parameters' => [
-                    'boolean'
+                    'boolean',
                 ],
                 true,
             ],
-            'validation fails - string required as int' => [
-                'attribute' => 'test',
-                'value' => '5',
+            'validation fails - string required as int'         => [
+                'attribute'  => 'test',
+                'value'      => '5',
                 'parameters' => [
                     'int',
                 ],
                 false,
             ],
-            'validation fails - string required as float' => [
-                'attribute' => 'test',
-                'value' => '5.5',
+            'validation fails - string required as float'       => [
+                'attribute'  => 'test',
+                'value'      => '5.5',
                 'parameters' => [
                     'float',
                 ],
                 false,
             ],
-            'validation fails - int required as float' => [
-                'attribute' => 'test',
-                'value' => 5,
+            'validation fails - int required as float'          => [
+                'attribute'  => 'test',
+                'value'      => 5,
                 'parameters' => [
                     'float',
                 ],
                 false,
             ],
-            'validation fails - float required as int' => [
-                'attribute' => 'test',
-                'value' => 5.5,
+            'validation fails - float required as int'          => [
+                'attribute'  => 'test',
+                'value'      => 5.5,
                 'parameters' => [
                     'int',
                 ],
                 false,
             ],
-            'validation fails - string required as bool' => [
-                'attribute' => 'test',
-                'value' => 'true',
+            'validation fails - string required as bool'        => [
+                'attribute'  => 'test',
+                'value'      => 'true',
                 'parameters' => [
-                    'bool'
+                    'bool',
                 ],
                 false,
             ],
-            'validation fails - int required as bool' => [
-                'attribute' => 'test',
-                'value' => 1,
+            'validation fails - int required as bool'           => [
+                'attribute'  => 'test',
+                'value'      => 1,
                 'parameters' => [
-                    'bool'
+                    'bool',
                 ],
                 false,
             ],
-            'validation fails - empty parameters' => [
-                'attribute' => 'test',
-                'value' => '1',
+            'validation fails - empty parameters'               => [
+                'attribute'  => 'test',
+                'value'      => '1',
                 'parameters' => [],
                 false,
             ],

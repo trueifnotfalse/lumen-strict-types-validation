@@ -1,18 +1,19 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Nwilging\LaravelStrictValidationTests\Unit;
+namespace TrueIfNotFalse\LaravelStrictValidationTests\Unit;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Nwilging\LaravelStrictValidation\Providers\LaravelStrictValidationProvider;
-use Nwilging\LaravelStrictValidationTests\TestCase;
+use TrueIfNotFalse\LumenStrictValidation\Providers\StrictValidationProvider;
+use TrueIfNotFalse\LumenStrictValidationTests\TestCase;
 
-class LaravelStrictValidationProviderTest extends TestCase
+class StrictValidationProviderTest extends TestCase
 {
     public function testValidatorBoots()
     {
-        $provider = new LaravelStrictValidationProvider(app());
+        $provider = new StrictValidationProvider(app());
         $provider->boot();
 
         $passingData = [
