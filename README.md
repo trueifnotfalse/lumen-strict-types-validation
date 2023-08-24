@@ -36,11 +36,11 @@ Add to `bootstrap/app.php` and register the Service Provider.
 
 # Usage
 
-When constructing validation rules, simply add `type:<desired type>` to the validation rules string/array.
+When constructing validation rules, simply add `type-<desired type>` to the validation rules string/array.
 
 ```
 $rules = [
-    'id' => 'required|type:int', # This will require the incoming `id` to be an integer.
+    'id' => 'required|type-int', # This will require the incoming `id` to be an integer.
 ];
 ```
 

@@ -10,17 +10,19 @@ use TrueIfNotFalse\LumenStrictValidation\StrictTypesValidator;
 
 class StrictValidationProvider extends ServiceProvider
 {
+    /**
+     * @return void
+     */
     public function boot(): void
     {
-        Validator::extend('type', function ($attribute, $value, $parameters, $validator): bool {
-            $validator->addReplacer('type', function ($message, $attribute, $rule, $parameters): string {
-                return str_replace(':type', $parameters[0], $message);
-            });
+        /** @var StrictTypesValidator $customValidator */
+        $customValidator = $this->app->make(StrictTypesValidator::class);
 
-            /** @var StrictTypesValidator $validator */
-            $customValidator = $this->app->make(StrictTypesValidator::class);
+        foreach (StrictTypesValidator::TYPE_MAP as $type => $nativeType) {
+            Validator::extend('type' . ucfirst($type), function ($attribute, $value, $parameters, $validator) use ($type, $customValidator): bool {
 
-            return $customValidator->validate($attribute, $value, $parameters);
-        }, trans(':attribute must be of type :type'));
+                return $customValidator->validate($attribute, $value, [$type]);
+            }, trans('validation.' . $nativeType));
+        }
     }
 }

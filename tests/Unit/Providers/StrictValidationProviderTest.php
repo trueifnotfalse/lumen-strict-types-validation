@@ -25,7 +25,7 @@ class StrictValidationProviderTest extends TestCase
         ];
 
         $rules = [
-            'test' => 'required|type:int',
+            'test' => 'required|type-int',
         ];
 
         $validator1 = Validator::make($passingData, $rules);
